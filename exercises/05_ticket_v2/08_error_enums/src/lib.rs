@@ -18,10 +18,8 @@ enum TicketNewError {
 fn easy_ticket(title: String, description: String, status: Status) -> Ticket {
     match Ticket::new(title.clone(), description, status.clone()) {
         Ok(ticket) => ticket,
-        Err(error) => match error {
-            TicketNewError::Title {message} => panic!("{message}"),
-            TicketNewError::Description => Ticket::new(title, "Description not provided".into(), status).unwrap()
-        }
+        Err(TicketNewError::Title {message}) => panic!("{message}"),
+        Err(TicketNewError::Description) => Ticket::new(title, "Description not provided".into(), status).unwrap()
     }
 }
 
