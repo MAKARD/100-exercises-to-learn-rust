@@ -72,6 +72,7 @@ mod tests {
         store.add_ticket(ticket);
 
         let tickets: Vec<_> = store.clone().into_iter().collect();
+
         assert_eq!(tickets, store.tickets);
     }
 }
